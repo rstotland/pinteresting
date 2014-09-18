@@ -24,6 +24,9 @@ gem 'jbuilder', '~> 1.2'
 # Bootstrap SASS https://github.com/twbs/bootstrap-sass
 gem 'bootstrap-sass'
 
+# Devise for user signup login https://github.com/plataformatec/devise
+gem 'devise', '~> 3.3.0'
+
 group :development, :test do
 	# Use sqlite3 as the database for Active Record
 	gem 'sqlite3'
