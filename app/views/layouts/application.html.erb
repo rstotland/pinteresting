@@ -15,7 +15,9 @@
 		<% flash.each do |name, msg| %>
 		     <%= content_tag(:div, msg, class: "alert alert-#{name} alert-dismissible", role: "alert") %>
 		<% end %>
-		<%= yield %>
+		<div class="jumbotron">
+			<%= yield %>
+		</div>
 	</div>
 
 </body>
