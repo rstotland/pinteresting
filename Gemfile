@@ -27,6 +27,9 @@ gem 'bootstrap-sass'
 # Devise for user signup login https://github.com/plataformatec/devise
 gem 'devise', '~> 3.3.0'
 
+# Paperclip for handeling Image files 
+gem 'paperclip', '~> 3.0'
+
 group :development, :test do
 	# Use sqlite3 as the database for Active Record
 	gem 'sqlite3'

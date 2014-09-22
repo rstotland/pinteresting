@@ -3,6 +3,7 @@
 <table class="table">
   <thead>
     <tr>
+      <th>Image</th>
       <th>Description</th>
       <th>User</th>
       <th></th>
@@ -13,10 +14,15 @@
   <tbody>
     <% @pins.each do |pin| %>
       <tr>
+        <td><%= image_tag pin.image.url(:thumb) %>
         <td><%= pin.description %></td>
-        <td><%= pin.user.email if pin.user %></td>
+        <td><%= pin.user.email if pin.user %><br/>
+            <% if current_user.admin? && pin.user != current_user %>
+              <span class="aaccess">Admin Access</span>
+            <% end %>
+        </td>
         <td><%= link_to 'Show', pin, class: "btn btn-default" %></td>
-        <% if pin.user == current_user %>
+        <% if pin.user == current_user || current_user.admin? %>
           <td><%= link_to 'Edit', edit_pin_path(pin), class: "btn btn-default" %></td>
           <td><%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %></td>
         <% end %>
