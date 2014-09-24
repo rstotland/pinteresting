@@ -31,7 +31,15 @@ gem 'devise', '~> 3.3.0'
 gem 'paperclip', '~> 3.0'
 
 # Amazon S3 Gem
-gem 'aws-sdk', '~> 1.20.0'
+#gem 'aws-sdk', '~> 1.20.0'
+
+# Pagination Gem
+gem 'will_paginate', '~> 3.0.5'
+
+# Will Paginate bootstrap
+gem 'will_paginate-bootstrap'
+
+
 
 group :development, :test do
 	# Use sqlite3 as the database for Active Record

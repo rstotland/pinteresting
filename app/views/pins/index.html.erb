@@ -1,50 +1,56 @@
-<h2>Pins</h2>
+<% if user_signed_in? %>
+  <h2>Pins</h2>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Image</th>
-      <th>Description</th>
-      <th>User</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @pins.each do |pin| %>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= link_to image_tag(pin.image.url(:thumb)), pin %>
-        <td><%= pin.description %></td>
-        <td><%= pin.user.email if pin.user %><br/>
-            <% if current_user.admin? && pin.user != current_user %>
-              <span class="aaccess">Admin Access</span>
-            <% end %>
-        </td>
-        <td>
-          <%= link_to pin, class: "btn btn-default" do%>
-              <span class="glyphicon glyphicon-eye-open"></span> View
-          <% end %>
-        </td>
-        <% if pin.user == current_user || current_user.admin? %>
+        <th>Image</th>
+        <th>Description</th>
+        <th>User</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @pins.each do |pin| %>
+        <tr>
+          <td><%= link_to image_tag(pin.image.url(:thumb)), pin %>
+          <td><%= pin.description %> <!--<%= pin.created_at.strftime("%B %d, %Y") %>--></td>
+          <td><%= pin.user.email if pin.user %><br/>
+              <% if current_user.admin? && pin.user != current_user %>
+                <span class="aaccess">Admin Access</span>
+              <% end %>
+          </td>
           <td>
-            <%= link_to edit_pin_path(pin), class: "btn btn-default" do%>
-              <span class="glyphicon glyphicon-edit"></span> Edit
+            <%= link_to pin, class: "btn btn-default" do%>
+                <span class="glyphicon glyphicon-eye-open"></span> View
             <% end %>
           </td>
-          <td><%= link_to pin, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" do %>
-              <span class="glyphicon glyphicon-trash"></span>
-              Delete
-            <% end %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+          <% if pin.user == current_user || current_user.admin? %>
+            <td>
+              <%= link_to edit_pin_path(pin), class: "btn btn-default" do%>
+                <span class="glyphicon glyphicon-edit"></span> Edit
+              <% end %>
+            </td>
+            <td><%= link_to pin, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" do %>
+                <span class="glyphicon glyphicon-trash"></span>
+                Delete
+              <% end %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<br>
-<% if user_signed_in? %>
-  <%= link_to new_pin_path, class: "btn btn-primary" do %>
-    <span class="glyphicon glyphicon-plus"></span> New Pin
-  <% end %>
+  <div class="center">
+    <%= will_paginate @posts, renderer: BootstrapPagination::Rails %>
+  </div>
+
+  <br>
+    <%= link_to new_pin_path, class: "btn btn-primary" do %>
+      <span class="glyphicon glyphicon-plus"></span> New Pin
+    <% end %>
+<% else %>
+  <%= render 'pages/home' %>
 <% end %>
