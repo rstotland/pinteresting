@@ -1,6 +1,10 @@
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <h2>Edit <%= resource_name.to_s.humanize %></h2>
+    <h2>Edit <%= resource_name.to_s.humanize %>
+      <% if current_user.admin? %>
+        : You are an Administrator!
+        <% end %>
+    </h2>
   </div>
   <div class="panel-body">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -26,7 +30,7 @@
     <% end %>
 
     <h3>Cancel my account</h3>
-
+    <hr/>
     <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, class: "btn btn-primary btn", method: :delete %></p>
 
     <%= link_to "Back", :back %>

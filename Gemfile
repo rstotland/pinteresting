@@ -30,6 +30,9 @@ gem 'devise', '~> 3.3.0'
 # Paperclip for handeling Image files 
 gem 'paperclip', '~> 3.0'
 
+# Amazon S3 Gem
+gem 'aws-sdk', '~> 1.20.0'
+
 group :development, :test do
 	# Use sqlite3 as the database for Active Record
 	gem 'sqlite3'
